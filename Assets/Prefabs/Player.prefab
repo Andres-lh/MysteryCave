@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 489586118}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,3 +186,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   handsPosition: {fileID: 4346586655988629209}
+  isPicked: 0

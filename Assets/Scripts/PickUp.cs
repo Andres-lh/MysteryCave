@@ -11,7 +11,7 @@ public class PickUp : MonoBehaviour
     public Vector3 PlayerDirection { get; set; }
     private GameObject itemHolding;
     private float pickUpRadious = 0.2f;
-
+    public bool isPicked;
     // Update is called once per frame
     void Update()
     {
@@ -27,6 +27,7 @@ public class PickUp : MonoBehaviour
                 itemHolding.transform.position = handsPosition.position + PlayerDirection;
                 itemHolding.transform.parent = null;
                 itemHolding = null;
+                isPicked = false;
             }
             else
             {
@@ -37,6 +38,7 @@ public class PickUp : MonoBehaviour
                     itemHolding = pickedUpItem.gameObject;
                     itemHolding.transform.position = handsPosition.position;
                     itemHolding.transform.parent = transform;
+                    isPicked = true;
                 }
             }
         }
