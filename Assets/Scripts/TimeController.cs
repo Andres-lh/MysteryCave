@@ -13,10 +13,12 @@ public class TimeController : MonoBehaviour
     private float currentTime;
     private int timeLoop = 0;
     public bool shouldCountDown = true;
+    private PlayerController player;
     
     private void Start()
     {
         currentTime = timeInSeconds;
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     void Update()
@@ -44,10 +46,14 @@ public class TimeController : MonoBehaviour
     private IEnumerator RestartCountDown()
     {
         timeLoop += 1;
-        yield return new WaitForSeconds(2);
+        player.enabled = false;
+
+        yield return new WaitForSeconds(3);
+
         currentTime = timeInSeconds;
         loopText.text = $"Time loop: {timeLoop}";
         timerDisplay.color = Color.white;
         shouldCountDown = true;
+        player.enabled = true;
     }
 }
