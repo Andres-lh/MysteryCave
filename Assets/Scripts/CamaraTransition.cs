@@ -5,7 +5,6 @@ using UnityEngine;
 public class CamaraTransition : MonoBehaviour
 {
     [SerializeField] private Transform cameraPosition;
-    [SerializeField] private PlayerController player;
     [SerializeField] private List<Transform> positions;
     [SerializeField] private float TransitionSpeed;
     bool canMove;
@@ -33,15 +32,7 @@ public class CamaraTransition : MonoBehaviour
 
     public void moveTo(int i)
     {
-        StartCoroutine(MoveCamera());
         canMove = true;
         target = i;
-    }
-
-    private IEnumerator MoveCamera()
-    {
-        player.enabled = false;
-        yield return new WaitForSeconds(2f);
-        player.enabled = true;
     }
 }
