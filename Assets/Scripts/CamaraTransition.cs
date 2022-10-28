@@ -7,7 +7,9 @@ public class CamaraTransition : MonoBehaviour
     [SerializeField] private Transform cameraPosition;
     [SerializeField] private List<Transform> positions;
     [SerializeField] private float TransitionSpeed;
+    [SerializeField] private GameObject Walls;
     bool canMove;
+    public bool puzzleStart;
     int target;
     // Start is called before the first frame update
     void Start()
@@ -34,5 +36,19 @@ public class CamaraTransition : MonoBehaviour
     {
         canMove = true;
         target = i;
+        if(!puzzleStart && i == 2)
+        {
+            AtivateWalls();
+            puzzleStart = true;
+        }
+    }
+
+    public void AtivateWalls()
+    {
+        Walls.SetActive(true);
+    }
+    public void DesativateWalls()
+    {
+        Walls.SetActive(false);
     }
 }
