@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1080499813057652628}
-  - component: {fileID: 1080499813057652629}
+  - component: {fileID: 626731421}
+  - component: {fileID: 626731423}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1080499813057652629
+--- !u!114 &626731421
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,8 +42,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1080499813057652631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54743bc56f4f8fd43be4a0d96574032d, type: 3}
+  m_Script: {fileID: 11500000, guid: 8db94e000927c2a4c9b50439d59b534e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerDisplay: {fileID: 0}
-  timeInSeconds: 100
+  loopText: {fileID: 0}
+  timeInSeconds: 30
+  shouldCountDown: 1
+--- !u!114 &626731423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080499813057652631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0114ff59609f669448f156b1de96463e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rooms:
+  - {fileID: 0}
+  - {fileID: 0}
+  spawnObject:
+  - {fileID: 6141087987900291414, guid: f181e0cad27e2c64fbd583f697466bee, type: 3}
+  - {fileID: 6141087987900291414, guid: f181e0cad27e2c64fbd583f697466bee, type: 3}
+  - {fileID: 6141087987900291414, guid: f181e0cad27e2c64fbd583f697466bee, type: 3}
+  - {fileID: 6141087987900291414, guid: f181e0cad27e2c64fbd583f697466bee, type: 3}
