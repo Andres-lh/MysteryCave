@@ -6,6 +6,7 @@ public class PuzzleManagment : MonoBehaviour
 {
     [SerializeField] private List<ValidatePuzzle> objects;
     [SerializeField] private CamaraTransition cameraManager;
+    [SerializeField] private TimeController timeController;
     private bool canValidate;
     public int[] solution = new int[3];
     public bool correct;
@@ -72,6 +73,7 @@ public class PuzzleManagment : MonoBehaviour
                 correct = true;
                 Debug.Log("Acertijo resuelto");
                 cameraManager.DesativateWalls();
+                timeController.shouldCountDown = false;
             }
             else
             {
