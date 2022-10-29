@@ -14,11 +14,13 @@ public class TimeController : MonoBehaviour
     private int timeLoop = 0;
     public bool shouldCountDown = true;
     private PlayerController player;
+    private SpawnManager spawnManager;
     
     private void Start()
     {
         currentTime = timeInSeconds;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        spawnManager = gameObject.GetComponent<SpawnManager>();
     }
 
     void Update()
@@ -48,12 +50,24 @@ public class TimeController : MonoBehaviour
         timeLoop += 1;
         player.enabled = false;
 
+        DestroyCurrentObjects();
+
         yield return new WaitForSeconds(3);
 
         currentTime = timeInSeconds;
         loopText.text = $"Time loop: {timeLoop}";
         timerDisplay.color = Color.white;
         shouldCountDown = true;
+        spawnManager.CreateObjects();
         player.enabled = true;
+    }
+
+    private void DestroyCurrentObjects()
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("Object");
+        for (int i = 0; i < objects.Length; i++)
+        {
+            Destroy(objects[i]);
+        }
     }
 }
