@@ -6,6 +6,8 @@ public class PuzzleManagment : MonoBehaviour
 {
     [SerializeField] private List<ValidatePuzzle> objects;
     [SerializeField] private CamaraTransition cameraManager;
+    [SerializeField] private TimeController timeController;
+    [SerializeField] private List<Clue> clue;
     private bool canValidate;
     public int[] solution = new int[3];
     public bool correct;
@@ -27,11 +29,11 @@ public class PuzzleManagment : MonoBehaviour
         {
             if (i == 0)
             {
-                solution[i] = Random.Range(1,4);
+                solution[i] = Random.Range(1,7);
             }
             else
             {
-                int aux = Random.Range(1, 4);
+                int aux = Random.Range(1, 7);
                 for(int j = 0; j < 3; j++)
                 {
                     if (aux == solution[j])
@@ -48,8 +50,21 @@ public class PuzzleManagment : MonoBehaviour
                     solution[i] = aux;
                 }
             }
+        }        
+        for (int i= 0; i < 3; i++)
+        {
+            clue[i].ActivateClue(solution[i]);
         }
     }
+
+    public void resetAll()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            clue[i].deactivateAll();
+        }
+    }
+
     public void checkSlots()
     {
         if (objects[0].value != 0 && objects[1].value != 0 && objects[2].value != 0)
@@ -72,6 +87,7 @@ public class PuzzleManagment : MonoBehaviour
                 correct = true;
                 Debug.Log("Acertijo resuelto");
                 cameraManager.DesativateWalls();
+                timeController.shouldCountDown = false;
             }
             else
             {

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private Rigidbody2D playerRB;
     private PickUp pickUpScript;
+    private float horizontal, vertical;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,13 +25,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         playerRB.MovePosition(playerRB.position + moveInput * speed * Time.deltaTime);
     }
 
     private void PlayerMovement()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
         moveInput = new Vector2(horizontal, vertical).normalized;
     }
 

@@ -19,7 +19,7 @@ public class ValidatePuzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isTaken && !itemHolding.isPicked)
+        if (isTaken && !itemHolding.isPicked && itemHolding!=null)
         {
             value = piece.value;
             piece.GetComponent<Transform>().position = transform.position;
@@ -47,5 +47,11 @@ public class ValidatePuzzle : MonoBehaviour
             piece = null;
             isTaken = false;
         }
+    }
+
+    public void resetSlot()
+    {
+        piece = null;
+        isTaken = false;
     }
 }
