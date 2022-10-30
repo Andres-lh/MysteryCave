@@ -8,6 +8,7 @@ public class CamaraTransition : MonoBehaviour
     [SerializeField] private List<Transform> positions;
     [SerializeField] private float TransitionSpeed;
     [SerializeField] private GameObject Walls;
+    [SerializeField] private TimeController timeController;
     bool canMove;
     public bool puzzleStart;
     int target;
@@ -36,10 +37,10 @@ public class CamaraTransition : MonoBehaviour
     {
         canMove = true;
         target = i;
-        if(!puzzleStart && i == 2)
+        if (i == 2)
         {
             AtivateWalls();
-            puzzleStart = true;
+            timeController.startCount();
         }
     }
 
