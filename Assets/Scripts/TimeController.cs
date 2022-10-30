@@ -9,10 +9,12 @@ public class TimeController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerDisplay;
     [SerializeField] private TextMeshProUGUI loopText;
     [SerializeField] private float timeInSeconds;
+    [SerializeField] private List<ValidatePuzzle> slots;
+    [SerializeField] private PuzzleManagment puzzleManagment;
 
     private float currentTime;
     private int timeLoop = 0;
-    public bool shouldCountDown = true;
+    public bool shouldCountDown;
     private PlayerController player;
     private SpawnManager spawnManager;
     
@@ -45,6 +47,11 @@ public class TimeController : MonoBehaviour
         timerDisplay.text = currentTime.ToString("0.0");
     }
     
+    public void startCount()
+    {
+        shouldCountDown = true;
+    }
+
     private IEnumerator RestartCountDown()
     {
         timeLoop += 1;
@@ -64,10 +71,16 @@ public class TimeController : MonoBehaviour
 
     private void DestroyCurrentObjects()
     {
+        puzzleManagment.resetAll();
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Object");
         for (int i = 0; i < objects.Length; i++)
         {
             Destroy(objects[i]);
         }
+        foreach(ValidatePuzzle v in slots)
+        {
+            v.resetSlot();
+        }
+        puzzleManagment.createSolution();
     }
 }
