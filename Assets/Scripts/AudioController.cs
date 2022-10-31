@@ -21,7 +21,8 @@ public class AudioController : MonoBehaviour
 
     private void LoadValues()
     {
-        float volumeValue = PlayerPrefs.GetFloat("Volume");
+        
+        float volumeValue = PlayerPrefs.GetFloat("Volume", 1.0f);
         volumeSlider.value = volumeValue;
         AudioListener.volume = volumeValue; 
     }
