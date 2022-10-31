@@ -24,7 +24,15 @@ public class PickUp : MonoBehaviour
         {
             if (itemHolding)
             {
-                itemHolding.transform.position = handsPosition.position + PlayerDirection;
+                
+                if(itemHolding.transform.position.y >= 10)
+                {
+                    itemHolding.transform.position = handsPosition.position - new Vector3(0, 2f, 0);
+                }
+                else
+                {
+                    itemHolding.transform.position = handsPosition.position + PlayerDirection;
+                }
                 itemHolding.transform.parent = null;
                 itemHolding = null;
                 isPicked = false;

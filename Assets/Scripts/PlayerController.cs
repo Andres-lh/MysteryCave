@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]   private float speed;
+    [SerializeField] private float speed;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private Vector2 moveInput;
     private Rigidbody2D playerRB;
     private PickUp pickUpScript;
@@ -33,6 +34,14 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        if (horizontal > 0.1)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
         moveInput = new Vector2(horizontal, vertical).normalized;
     }
 
