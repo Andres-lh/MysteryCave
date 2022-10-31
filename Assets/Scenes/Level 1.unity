@@ -347,6 +347,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1448947422430527582, guid: aad5008910f9c684f98d870bc6a17b54, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448947422430527582, guid: aad5008910f9c684f98d870bc6a17b54, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448947422430527582, guid: aad5008910f9c684f98d870bc6a17b54, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448947422430527582, guid: aad5008910f9c684f98d870bc6a17b54, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 2383454501179618873, guid: aad5008910f9c684f98d870bc6a17b54, type: 3}
       propertyPath: m_Interactable
       value: 0
@@ -745,7 +761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerDisplay: {fileID: 528373186}
   loopText: {fileID: 1080593147}
-  timeInSeconds: 40
+  timeInSeconds: 30
   slots:
   - {fileID: 1437937560}
   - {fileID: 1201953797}
