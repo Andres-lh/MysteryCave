@@ -10,6 +10,7 @@ public class PuzzleManagment : MonoBehaviour
     [SerializeField] private List<Clue> clues;
     [SerializeField] private AudioClip winSound;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private GameObject continueUI;
     private bool canValidate;
     public int[] solution = new int[3];
     public bool correct;
@@ -90,6 +91,7 @@ public class PuzzleManagment : MonoBehaviour
                 cameraManager.DesativateWalls();
                 timeController.shouldCountDown = false;
                 audioSource.PlayOneShot(winSound, 1f);
+                continueUI.SetActive(true);
                 foreach(ValidatePuzzle v in validateZones)
                 {
                     v.enabled = false;
