@@ -7,7 +7,11 @@ public class CamaraTransition : MonoBehaviour
     [SerializeField] private Transform cameraPosition;
     [SerializeField] private List<Transform> positions;
     [SerializeField] private float TransitionSpeed;
-    [SerializeField] private GameObject Walls;
+    [SerializeField] private GameObject Walls, WinUI, tutorialObjects;
+    [SerializeField] private TimeController timeController;
+    [SerializeField] private SpawnManager spawnManager;
+    [SerializeField] private PuzzleManagment puzzleManagment;
+    [SerializeField] private PlayerController playerController;
     bool canMove;
     public bool puzzleStart;
     int target;
@@ -36,10 +40,19 @@ public class CamaraTransition : MonoBehaviour
     {
         canMove = true;
         target = i;
-        if(!puzzleStart && i == 2)
+        if (i == 2 && !puzzleStart)
         {
-            AtivateWalls();
             puzzleStart = true;
+            AtivateWalls();
+            timeController.startCount();
+            spawnManager.CreateObjects();
+            puzzleManagment.createSolution();
+            Object.Destroy(tutorialObjects);
+        }
+        else if(i==4)
+        {
+            WinUI.SetActive(true);
+            playerController.enabled = false;
         }
     }
 

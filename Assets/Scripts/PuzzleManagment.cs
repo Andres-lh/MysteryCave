@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PuzzleManagment : MonoBehaviour
 {
-    [SerializeField] private List<ValidatePuzzle> objects;
+    [SerializeField] private List<ValidatePuzzle> validateZones;
     [SerializeField] private CamaraTransition cameraManager;
+    [SerializeField] private TimeController timeController;
+    [SerializeField] private List<Clue> clues;
+    [SerializeField] private AudioClip winSound;
+    [SerializeField] private AudioSource audioSource;
     private bool canValidate;
     public int[] solution = new int[3];
     public bool correct;
     // Start is called before the first frame update
     void Start()
     {
-        createSolution();
+
     }
 
     // Update is called once per frame
@@ -27,11 +31,11 @@ public class PuzzleManagment : MonoBehaviour
         {
             if (i == 0)
             {
-                solution[i] = Random.Range(1,4);
+                solution[i] = Random.Range(1,7);
             }
             else
             {
-                int aux = Random.Range(1, 4);
+                int aux = Random.Range(1, 7);
                 for(int j = 0; j < 3; j++)
                 {
                     if (aux == solution[j])
@@ -48,11 +52,24 @@ public class PuzzleManagment : MonoBehaviour
                     solution[i] = aux;
                 }
             }
+        }        
+        for (int i= 0; i < 3; i++)
+        {
+            clues[i].ActivateClue(solution[i]);
         }
     }
+
+    public void resetAll()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            clues[i].deactivateAll();
+        }
+    }
+
     public void checkSlots()
     {
-        if (objects[0].value != 0 && objects[1].value != 0 && objects[2].value != 0)
+        if (validateZones[0].value != 0 && validateZones[1].value != 0 && validateZones[2].value != 0)
         {
             canValidate = true;
             checkSolution();
@@ -67,11 +84,16 @@ public class PuzzleManagment : MonoBehaviour
     {
         if (canValidate)
         {
-            if(objects[0].value == solution[0] && objects[1].value == solution[1] && objects[2].value == solution[2])
+            if(validateZones[0].value == solution[0] && validateZones[1].value == solution[1] && validateZones[2].value == solution[2])
             {
                 correct = true;
-                Debug.Log("Acertijo resuelto");
                 cameraManager.DesativateWalls();
+                timeController.shouldCountDown = false;
+                audioSource.PlayOneShot(winSound, 1f);
+                foreach(ValidatePuzzle v in validateZones)
+                {
+                    v.enabled = false;
+                }
             }
             else
             {
