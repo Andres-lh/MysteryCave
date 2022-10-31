@@ -69,7 +69,7 @@ public class TimeController : MonoBehaviour
         player.enabled = true;
     }
 
-    private void DestroyCurrentObjects()
+    public void DestroyCurrentObjects()
     {
         puzzleManagment.resetAll();
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Object");
